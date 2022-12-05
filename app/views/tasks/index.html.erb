@@ -1,0 +1,18 @@
+<h1><%= current_user.name %>の達成したいこと一覧</h1>
+
+<table>
+  <tbody>
+    <% @tasks.each do |t| %>
+      <tr>
+        <td><%= t.name %></td>
+        <td><%= link_to '詳細を見る', causes_path %></td>
+        <td><%= link_to '編集する', edit_task_path(t) %></td>
+        <td><%= link_to '削除する', t, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新しいタスクを登録する', new_task_path %>

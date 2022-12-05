@@ -1,0 +1,59 @@
+<%= form_with(model: @cause, local: true) do |form| %>
+  <% if @cause.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cause.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+        <% @cause.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table>
+  <thead>
+    <tr>
+      <th>できない理由</th>
+      <th>画像</th>
+      <th>動画</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= form.text_field :content %></td>
+        <td><%= form.file_field :picture %></td>
+        <td><%= form.file_field :movie, :accept => 'movie/*' %></td>
+        <td><%= link_to_add_association '解決策', form, :solutions %></td>
+        <%= form.hidden_field :task_id, :value => @cause.task_id %>
+      </tr>
+  </tbody>
+</table>
+
+  <%
+=begin%>
+ <%= form.fields_for :tasks do |task| %>
+  <table>
+    <thead>
+    <tr>
+        <th>できない理由</th>
+        <th>画像</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><%= task.text_area :content %></td>
+        <td><%= task.file_field :picture %></td>
+      </tr>
+    </tbody> 
+  </table>
+  <% end %>  
+<%
+=end%>
+
+
+  <div class="actions">
+    <%= form.submit "登録する" %>
+  </div>
+<% end %>

@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>できない原因</th>
+      <th>写真</th>
+      <th>動画</th>
+      <th>解決策を表示したいがエラーになる</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @cause.content %></td>
+        <td><%= image_tag @cause.picture.url %></td>
+        <td><%= link_to @cause.movie_url.to_s do %>
+              <%= video_tag(@cause.movie.to_s, autoplay: true, muted: true) %>
+            <% end %>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+<%= link_to '編集する', edit_cause_path(@cause) %> |
+<%= link_to '戻る', causes_path %>

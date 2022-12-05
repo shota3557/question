@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<h1>進まない理由一覧</h1>
+
+<table>
+  <tbody>
+    <% @causes.each do |cause| %>
+      <tr>
+        <td><%= cause.content %></td>
+        <td><%= link_to '詳細を見る', cause %></td>
+        <td><%= link_to '編集する', edit_cause_path(cause) %></td>
+        <td><%= link_to '削除する', cause, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '深掘りを追加する', new_cause_path %>
